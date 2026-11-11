@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect x="2" y="2" width="60" height="60" rx="18" fill="#0b1120"/>
-  <rect x="2.5" y="2.5" width="59" height="59" rx="17.5" fill="none" stroke="#38bdf8" stroke-opacity="0.5"/>
-  <text x="50%" y="56%" text-anchor="middle" font-family="Inter, Segoe UI, sans-serif" font-size="26" font-weight="800" fill="#38bdf8">SK</text>
+  <rect x="2" y="2" width="60" height="60" rx="17" fill="#07080b"/>
+  <rect x="2.6" y="2.6" width="58.8" height="58.8" rx="16.4" fill="none" stroke="#d8ff72" stroke-opacity="0.55"/>
+  <text x="50%" y="56%" text-anchor="middle" font-family="Sora, Segoe UI, sans-serif" font-size="24" font-weight="800" fill="#d8ff72">SK</text>
 </svg>
