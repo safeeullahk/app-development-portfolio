@@ -3,6 +3,7 @@
   "use strict";
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.documentElement.classList.add("js-motion");
 
   /* ---------- Loader ---------- */
   var loader = document.getElementById("loader");
@@ -22,7 +23,7 @@
     }
   }
 
-  if (reduce || !loader) {
+  if (!loader) {
     finishLoad();
   } else {
     var progress = 0;
@@ -91,7 +92,7 @@
 
   /* ---------- Reveal on scroll ---------- */
   var revealEls = document.querySelectorAll("[data-reveal]");
-  if ("IntersectionObserver" in window && !reduce) {
+  if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
@@ -109,6 +110,11 @@
   } else {
     revealEls.forEach(function (el) { el.classList.add("is-in"); });
   }
+
+  /* Safety: never leave content hidden if an observer misses it */
+  window.setTimeout(function () {
+    document.querySelectorAll("[data-reveal]:not(.is-in)").forEach(function (el) { el.classList.add("is-in"); });
+  }, 2600);
 
   /* ---------- Active nav link ---------- */
   var sectionIds = ["home", "school-manager", "filcon", "keychat", "skills", "about", "contact"];
@@ -135,7 +141,7 @@
   }
 
   /* ---------- Device tilt ---------- */
-  if (!reduce && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
     document.querySelectorAll("[data-tilt]").forEach(function (device) {
       device.addEventListener("pointermove", function (event) {
         var rect = device.getBoundingClientRect();
@@ -160,7 +166,7 @@
       button.addEventListener("click", function () {
         var dir = button.getAttribute("data-gal") === "next" ? 1 : -1;
         var amount = gallery.clientWidth * 0.7 * dir;
-        gallery.scrollBy({ left: amount, behavior: reduce ? "auto" : "smooth" });
+        gallery.scrollBy({ left: amount, behavior: "smooth" });
       });
     });
 
@@ -235,7 +241,7 @@
   /* ---------- Subtle pointer parallax on hero portrait ---------- */
   var heroVisual = document.querySelector(".hero__visual");
   var portrait = document.querySelector(".portrait");
-  if (!reduce && heroVisual && portrait && window.matchMedia("(hover: hover)").matches) {
+  if (heroVisual && portrait && window.matchMedia("(hover: hover)").matches) {
     heroVisual.addEventListener("pointermove", function (event) {
       var rect = heroVisual.getBoundingClientRect();
       var x = (event.clientX - rect.left) / rect.width - 0.5;
