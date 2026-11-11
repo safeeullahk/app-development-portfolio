@@ -1173,5 +1173,4 @@ html.js-motion [data-reveal].is-in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .orb, .float, .marquee__track, .scroll-cue__line::after, .pulse { animation: none !important; }
-  .device { transition: none; }
 }
